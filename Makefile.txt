@@ -1,0 +1,28 @@
+
+CC = gcc
+
+CFLAGS = -Wall
+
+SRCS = main.c team.c teamvec.c
+
+OBJS = $(SRCS:.c=.o)
+
+TARGET = team_ep
+
+.PHONY: all compile run clean
+
+all: compile run
+
+compile: $(TARGET)
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
